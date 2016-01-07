@@ -1,7 +1,7 @@
 blocks = [];
 nblocks = 5;
 
-firstBlock = 150;
+firstBlock = 200;
 blockDist = 125;
 blockWidth = 20;
 blockHeight = 100;
@@ -29,6 +29,7 @@ function initBlocks(){
 }
 
 function updateBlocks(dt){
+  blockSpeed = 70+timeSeconds;
   for(i=0; i<nblocks; i++){
     b = blocks[i];
     b.x -= dt*blockSpeed;

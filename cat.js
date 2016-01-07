@@ -1,5 +1,6 @@
 
 function updateCat(dt){
+  
   //do the jump if jump to be done
   if(doJump && !jumpDone){
     cat.velY = -500;
