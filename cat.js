@@ -18,7 +18,7 @@ function updateCat(dt){
   }
 }
 
-function drawCat(ctx){
+function drawCat(){
     ctx.beginPath();
     ctx.rect(cat.x, cat.y, cat.height, cat.height);
     ctx.fillStyle = "#0095DD";

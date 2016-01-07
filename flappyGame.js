@@ -2,7 +2,7 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
-var cat = {x:50, y:canvas.height/2-10, velY: 100, height:20, accY:1000, maxVel: 200, maxY: canvas.height};
+var cat = {x:50, y:canvas.height/2-10, velY: 100, height:20, accY:2000, maxVel: 200, maxY: canvas.height};
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -30,8 +30,8 @@ function update(dt){
 
 function draw(){
   ctx.clearRect(0,0,canvas.width, canvas.height);
-  drawCat(ctx);
-  drawBlocks(canvas);
+  drawCat();
+  drawBlocks();
 }
 
 var lastTime = Date.now();
