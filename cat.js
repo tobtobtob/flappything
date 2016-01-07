@@ -1,5 +1,12 @@
 
 function updateCat(dt){
+  //do the jump if jump to be done
+  if(doJump && !jumpDone){
+    cat.velY = -500;
+    jumpDone = true;
+    doJump = false;
+    
+  }
   //update velocity
   if(cat.velY < cat.maxVel){
     cat.velY += dt*cat.accY;
