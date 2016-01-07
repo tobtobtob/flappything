@@ -2,6 +2,8 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
+var animationID = 0;
+
 var cat = {x:50, y:canvas.height/2-10, velY: 100, height:20, accY:2000, maxVel: 200, maxY: canvas.height};
 
 document.addEventListener("keydown", keyDownHandler, false);
@@ -22,9 +24,20 @@ function keyUpHandler(e) {
   }
 }
 
+function collisionDetection(){
+  for(i=0; i<nblocks; i++){
+    if(blocks[i].x < cat.x+cat.height && cat.x < blocks[i].x+blockWidth){
+      if(cat.y < blocks[i].y+blocks[i].height && cat.y+cat.height >blocks[i].y){
+        console.log("collision");
+      }
+    }
+  }
+}
+
 function update(dt){
   updateCat(dt);
   updateBlocks(dt);
+  collisionDetection();
   
 }
 

@@ -16,6 +16,9 @@ function updateCat(dt){
   if(cat.y+cat.height > cat.maxY){
     cat.y = cat.maxY-cat.height
   }
+  if(cat.y < 0){
+    cat.y = 0;
+  }
 }
 
 function drawCat(){
