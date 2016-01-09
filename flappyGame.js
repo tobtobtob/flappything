@@ -20,7 +20,11 @@ function keyDownHandler(e) {
   if(e.keyCode == 38){
     doJump = true;
   }
+  if(e.keyCode == 78){
+    if(!running) startGame();
+  }
 }
+
 function keyUpHandler(e) {
   if(e.keyCode == 38){
     doJump = false;
@@ -30,8 +34,29 @@ function keyUpHandler(e) {
 
 function stopGame(){
   running = false;
-  changeXDirection();
-  //ctx.globalAlpha = 0.2;
+  setParticleDirection(1);
+  //ctx.globalAlpha = 0.5;
+  var info1 = document.getElementById("firstInfoLine");
+  var info2 = document.getElementById("secInfoLine");
+  info1.innerHTML = "You survived "+Math.floor(10*timeSeconds)/10+" seconds";
+  info2.innerHTML = "press 'n' for a new game";
+  
+}
+
+function startGame(){
+  var info1 = document.getElementById("firstInfoLine");
+  var info2 = document.getElementById("secInfoLine");
+  info1.innerHTML = "<br>";
+  info2.innerHTML = "press up to jump"
+  
+  timeSeconds = 0;
+  initBlocks();
+  initParticles(60);
+  initCat();
+  setParticleDirection(-1);
+  
+  running = true;
+  
   
 }
 
@@ -55,7 +80,7 @@ function update(dt){
   updateBlocks(dt);
   
   }
-  if(running) updateParticles(dt);
+  updateParticles(dt);
   collisionDetection();
   
 }
@@ -67,7 +92,6 @@ function draw(){
   
   drawParticles();
   drawCat();
-  if(!running) drawEndText();
 }
 
 var lastTime = Date.now();
@@ -84,4 +108,5 @@ function main(){
 
 initBlocks();
 initParticles(60);
+startGame();
 main();

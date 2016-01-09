@@ -29,3 +29,7 @@ function drawCat(){
     ctx.fill();
     ctx.closePath();
 }
+
+function initCat(){
+  cat.y = canvas.height/2-cat.height/2;
+}

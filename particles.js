@@ -19,6 +19,10 @@ function changeXDirection(){
   xDirection = 1;
 }
 
+function setParticleDirection(n){
+  xDirection = n;
+}
+
 function shootParticle(p){
   p.xVel = xDirection*(Math.random()*150)-75;
   p.yVel = (Math.random()*150)-75;

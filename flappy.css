@@ -1,0 +1,19 @@
+* 
+{ 
+padding: 0;
+margin: 0;
+}
+
+canvas 
+{ 
+    background: #fff;
+    display: block;
+    margin: 0 auto; 
+}
+
+p
+{
+    font-family: "Courier New";
+    font-style: normal;
+    text-align: center;
+}
