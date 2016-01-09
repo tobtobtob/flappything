@@ -1,11 +1,13 @@
 blocks = [];
 nblocks = 5;
 
-firstBlock = 200;
+firstBlock = 300;
 blockDist = 125;
 blockWidth = 20;
 blockHeight = 100;
 blockSpeed = 70;
+
+var blendMargin = 100;
 
 
 function randomBlockHeight(){
@@ -33,7 +35,7 @@ function updateBlocks(dt){
   for(i=0; i<nblocks; i++){
     b = blocks[i];
     b.x -= dt*blockSpeed;
-    //put the out-of-view block behind it's successor
+    //put an out-of-view block behind it's successor
     if(b.x+blockWidth < 0){
       b.x = blocks[(i-1+nblocks) % nblocks].x+blockDist;
       b.height = randomBlockHeight();
@@ -45,10 +47,17 @@ function updateBlocks(dt){
 function drawBlocks(){
   for(i=0; i<nblocks; i++){
     b = blocks[i];
+    var prevAlpha = ctx.globalAlpha;
+    
+    if(b.x < blendMargin) ctx.globalAlpha *= ((Math.max(b.x, 0))/(blendMargin));
+    if(b.x + blockWidth > canvas.width - blendMargin) ctx.globalAlpha *= ((canvas.width-b.x)/blendMargin);
+    
     ctx.beginPath();
     ctx.rect(b.x, b.y, blockWidth, b.height);
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = gameColor;
     ctx.fill();
     ctx.closePath();
+    
+    ctx.globalAlpha = prevAlpha;
   }
 }

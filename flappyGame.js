@@ -5,8 +5,10 @@ var ctx = canvas.getContext("2d");
 var timeSeconds = 0;
 var running = true;
 
+var gameColor = "#555555";
 
-var cat = {x:100, y:canvas.height/2-10, velY: 100, height:20, accY:2000, maxVel: 300, maxY: canvas.height, moving: true};
+
+var cat = {x:150, y:canvas.height/2-10, velY: 100, height:20, accY:2000, maxVel: 300, maxY: canvas.height, moving: true};
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -28,6 +30,8 @@ function keyUpHandler(e) {
 
 function stopGame(){
   running = false;
+  changeXDirection();
+  //ctx.globalAlpha = 0.2;
   
 }
 
@@ -41,6 +45,8 @@ function collisionDetection(){
   }
 }
 
+
+
 function update(dt){
 
   if(running){
@@ -49,16 +55,19 @@ function update(dt){
   updateBlocks(dt);
   
   }
-  updateParticles();
+  if(running) updateParticles(dt);
   collisionDetection();
   
 }
 
 function draw(){
   ctx.clearRect(0,0,canvas.width, canvas.height);
-  drawCat();
+  
   drawBlocks();
+  
   drawParticles();
+  drawCat();
+  if(!running) drawEndText();
 }
 
 var lastTime = Date.now();
@@ -74,5 +83,5 @@ function main(){
 }
 
 initBlocks();
-initParticles();
+initParticles(60);
 main();
