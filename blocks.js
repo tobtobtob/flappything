@@ -50,7 +50,7 @@ function drawBlocks(){
     var prevAlpha = ctx.globalAlpha;
     
     if(b.x < blendMargin) ctx.globalAlpha *= ((Math.max(b.x, 0))/(blendMargin));
-    if(b.x + blockWidth > canvas.width - blendMargin) ctx.globalAlpha *= ((canvas.width-b.x)/blendMargin);
+    if(b.x > canvas.width - blendMargin) ctx.globalAlpha *= (Math.max(0, canvas.width-b.x-blockWidth)/(blendMargin-blockWidth));
     
     ctx.beginPath();
     ctx.rect(b.x, b.y, blockWidth, b.height);

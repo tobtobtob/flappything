@@ -51,7 +51,7 @@ function startGame(){
   
   timeSeconds = 0;
   initBlocks();
-  initParticles(60);
+  initParticles(40);
   initCat();
   setParticleDirection(-1);
   
@@ -107,6 +107,5 @@ function main(){
 }
 
 initBlocks();
-initParticles(60);
 startGame();
 main();
