@@ -3,7 +3,8 @@ var particles = [];
 var nparticles = 30;
 var particleSize = 7;
 
-var particleTime = 1;
+//by default, particles can have only negative x-velocity
+var xDirection = -1;
 
 
 function initParticles(n){
@@ -13,9 +14,6 @@ function initParticles(n){
   }
 }
 
-var xDirection = -1;
-
-
 function setParticleDirection(n){
   xDirection = n;
 }
@@ -23,8 +21,8 @@ function setParticleDirection(n){
 function shootParticle(p){
   p.xVel = xDirection*(Math.random()*150)-75;
   p.yVel = (Math.random()*150)-75;
-  p.x = cat.x+cat.height/2-particleSize/2;
-  p.y = cat.y+cat.height/2-particleSize/2;
+  p.x = square.x+square.height/2-particleSize/2;
+  p.y = square.y+square.height/2-particleSize/2;
   p.alpha = 1;
 }
 
@@ -48,6 +46,7 @@ function drawParticle(p){
   ctx.globalAlpha = prevAlpha;
 }
 
+//time since the last particle was shot
 var lastParticle = 0;
 
 function updateParticles(dt){
@@ -67,7 +66,5 @@ function drawParticles(){
   for (i=0; i<nparticles; i++){
     drawParticle(particles[i]);
   }
-  
-  ctx.globalAlpha = 1;
 }
 
